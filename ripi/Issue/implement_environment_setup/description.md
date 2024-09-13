@@ -33,3 +33,5 @@
   Time:        0.395 s, estimated 6 s
   Ran all test suites.
   ```
+
+- [ ] Add nodemon for auto reload on save
