@@ -22,5 +22,5 @@ docker-compose.yml
 .vscode/
 
 # Helper files
-/generate_markdown_from_files.sh
-/output.md
+generate_markdown.sh
+output.md
