@@ -119,6 +119,6 @@ sequenceDiagram
 
 ### 📚 Useful Resources:
 
-- [Microservices with Grenache]([Microservices with Grenache](https://blog.bitfinex.com/tutorial/bitfinex-loves-microservices-grenache/))
+- [Microservices with Grenache](https://blog.bitfinex.com/tutorial/bitfinex-loves-microservices-grenache/)
 - [Grenache GitHub repository](https://github.com/bitfinexcom/grenache)
 - [Mastering P2P: The Power of Decentralized Networking!](https://isma.codes/blog/mastering_p2_p_the_power_of_decentralized_networking)
