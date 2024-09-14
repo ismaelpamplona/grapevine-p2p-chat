@@ -18,37 +18,44 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-// Ask for the peer name you want to discover
-rl.question(
-  "Enter the peer name to lookup (e.g., client1, client2): ",
-  (peerName) => {
-    link.lookup(peerName, (err, peers) => {
-      if (err) {
-        console.error("Lookup error:", err);
+function startPrompt() {
+  rl.question(
+    "\n---\n\n✨ Enter the peer name to lookup (client1, client2 or type 'exit' to quit): ",
+    (peerName) => {
+      if (peerName.toLowerCase() === "exit") {
+        console.log("\n👋 Exiting the client... Goodbye!\n");
         rl.close();
-        return;
+        process.exit(0);
       }
 
-      if (peers.length === 0) {
-        console.log("No peers found!");
-        rl.close();
-        return;
-      }
+      link.lookup(peerName, (err, peers) => {
+        if (err) {
+          console.error("\n❌ Lookup error");
+          return startPrompt();
+        }
 
-      console.log("Available peers:", peers);
-      rl.question("Enter your message: ", (message) => {
-        sendMessage(peerName, message, peers[0]); // Correctly send message to peer name
+        if (peers.length === 0) {
+          console.log("\n⚠️  No peers found!");
+          return startPrompt();
+        }
+
+        console.log("\n🔗 Available peers:", peers);
+        rl.question("💬 Enter your message: ", (message) => {
+          sendMessage(peerName, message, peers[0]); // Correctly send message to peer name
+        });
       });
-    });
-  }
-);
+    }
+  );
+}
 
 // Function to send message to the chosen peer
 function sendMessage(peerName, message, peerAddress) {
-  console.log(`Sending message to ${peerName} at ${peerAddress}`);
+  console.log(`\n📤 Sending message to ${peerName} at ${peerAddress}...`);
   peer.request(peerName, { message }, { timeout: 10000 }, (err, result) => {
-    if (err) console.error(err);
-    else console.log(`Received response from ${peerName}: ${result}`);
-    rl.close();
+    if (err) console.error(`\n❌ Error sending message to ${peerName}:`, err);
+    else console.log(`📥 Message successfully delivered to ${peerName}!`);
+    startPrompt();
   });
 }
+
+startPrompt();
