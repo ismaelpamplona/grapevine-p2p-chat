@@ -41,3 +41,17 @@ afterAll(() => {
   grape2.kill();
   link.stop();
 });
+
+test("should register and discover services on the DHT", (done) => {
+  // Announce a service
+  link.put({ v: "test-service" }, (err, hash) => {
+    expect(err).toBeNull();
+
+    // Lookup the service on the DHT
+    link.get(hash, (err, res) => {
+      expect(err).toBeNull();
+      expect(res.v).toBe("test-service");
+      done();
+    });
+  });
+});
