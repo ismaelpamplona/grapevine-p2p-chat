@@ -1,6 +1,7 @@
 const { exec } = require("child_process");
+const Link = require("grenache-nodejs-link");
 
-let grape1, grape2;
+let grape1, grape2, link;
 
 beforeAll((done) => {
   // Start first Grape instance
@@ -25,6 +26,12 @@ beforeAll((done) => {
     }
   );
 
+  // Initialize the link to Grape
+  link = new Link({
+    grape: "http://127.0.0.1:30001",
+  });
+  link.start();
+
   // Wait a few seconds to ensure both Grapes are running before continuing
   setTimeout(done, 2000);
 });
@@ -32,4 +39,5 @@ beforeAll((done) => {
 afterAll(() => {
   grape1.kill();
   grape2.kill();
+  link.stop();
 });
