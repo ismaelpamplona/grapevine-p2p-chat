@@ -100,12 +100,3 @@ Let’s say there are two users, **Alice** and **Bob**, who want to chat using t
 2.  **Discover**: GrenachePeer queries GrenacheGrape for other GrenacheServices (peers).
 3.  **Communicate**: GrenachePeer sends messages directly to discovered GrenacheServices (peers) via WebSocket (WS).
 4.  **Receive**: GrenacheServices listen for and forward messages to their respective peers.
-
-## Plan:
-
-1.  **Use Node.js with Vanilla JavaScript**.
-2.  **TDD (Test-Driven Development)**: Write unit and integration tests first for each feature.
-3.  **Step-by-step implementation**: I will send small, digestible chunks of code and wait for your feedback after each step.
-4.  **Docker setup**: Ensure that Docker is used following the standards set by the Grenache community.
-5.  **Feature-based development**: Each feature will be implemented separately, tracked by issue names, with clear explanations.
-6.  **Detailed environment setup**: I’ll guide you through setting up the entire environment from scratch.
